@@ -27,7 +27,7 @@ namespace MunicipalityTaxService
       services.AddControllers();
       services.AddTransient<IMunicipalityTaxRecordRepository, MunicipalityTaxRecordRepositoryEF>();
       services.AddDbContext<MunicipalityTaxRecordContext>(options =>
-            options.UseInMemoryDatabase(Configuration.GetConnectionString("MunicipalityTaxRecordContext")));
+            options.UseSqlServer(Configuration.GetConnectionString("MunicipalityTaxRecordContext")));
 
       services.AddMvc()
         .AddJsonOptions(options =>
@@ -67,7 +67,7 @@ namespace MunicipalityTaxService
                 MunicipalityName = "Copenhegen",
                 ScheduleStart = new DateTime(2016, 01, 01),
                 ScheduleEnd = new DateTime(2016, 12, 31),
-                TaxRate = 0.1,
+                TaxRate = new decimal(0.1),
                 Period = TimePeriod.Year
             };
 

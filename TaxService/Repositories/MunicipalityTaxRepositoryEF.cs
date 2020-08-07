@@ -37,7 +37,7 @@ namespace MunicipalityTaxService.Repositories
       }
       catch (DbUpdateException e)
       {
-        throw new MunicipalityTaxRecordUpdateException("Could not create TaxRate records in database. ", e);
+        throw new MunicipalityTaxRecordUpdateException("Could not create MunicipalityTaxRecord  in database. ", e);
       }
     }
 
@@ -50,7 +50,7 @@ namespace MunicipalityTaxService.Repositories
       }
       catch(DbUpdateException e)
       {
-        throw new MunicipalityTaxRecordUpdateException("Could not create TaxRate records in database.", e);
+        throw new MunicipalityTaxRecordUpdateException("Could not create MunicipalityTaxRecord in database.", e);
       }
     }
 
@@ -64,7 +64,7 @@ namespace MunicipalityTaxService.Repositories
       }
       catch (DbUpdateConcurrencyException e)
       {
-        throw new MunicipalityTaxRecordUpdateException("Could not update TaxRate record in database.", e);
+        throw new MunicipalityTaxRecordUpdateException("Could not update MunicipalityTaxRecord in database.", e);
       }
     }
   }

@@ -54,11 +54,11 @@ namespace MunicipalityTaxService.Controllers
 
     [Route("GetTaxRate")]
     [HttpGet]
-    public ActionResult GetTaxRate(string MunicipalityName, DateTime TaxRateDate)
+    public ActionResult GetTaxRate(string MunicipalityName, DateTime ScheduleStart)
     {
-      var TaxRate = MunicipalityTaxRecordRepository.GetMunicipalityTaxRecord(MunicipalityName, TaxRateDate);
+      var TaxRate = MunicipalityTaxRecordRepository.GetMunicipalityTaxRecord(MunicipalityName, ScheduleStart);
       if (TaxRate == null)
-        return NotFound("No Municipality tax record was found.");
+        return NotFound("No Municipality tax record was found.Please Check your parameters");
       
       return Ok(TaxRate.TaxRate);
     }

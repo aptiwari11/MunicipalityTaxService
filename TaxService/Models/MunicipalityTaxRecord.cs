@@ -9,6 +9,6 @@ namespace MunicipalityTaxService.Models
     public DateTime ScheduleEnd { get; set; }
     public string MunicipalityName { get; set; }
     public TimePeriod Period { get; set; }
-    public double TaxRate { get; set; }
+    public Decimal TaxRate { get; set; }
     }
 }

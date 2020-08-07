@@ -9,7 +9,6 @@ using System.Text.Json.Serialization;
 using System;
 using MunicipalityTaxService.Models;
 using MunicipalityTaxService.Data;
-using MunicipalityTaxService.Models;
 
 namespace MunicipalityTaxService
 {

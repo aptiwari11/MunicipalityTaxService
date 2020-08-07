@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MunicipalityTaxService.Repositories;
 using System;
-using System.IO;
-using MunicipalityTaxService.Models;
 using MunicipalityTaxService.Models;
 
 namespace MunicipalityTaxService.Controllers
@@ -17,30 +15,12 @@ namespace MunicipalityTaxService.Controllers
       this.MunicipalityTaxRecordRepository = MunicipalityTaxRecordRepository;
     }
 
-    [Route("AddTaxRateFromFile")]
+    [Route("AddMTax")]
     [HttpPost]
-    public ActionResult AddTaxRateFromFile(IFormFile file)
-    {
-      using (var reader = new StreamReader(file.OpenReadStream()))
-      {
-        try
-        {
-                    // Processing the file. Need to create another service for it.
-        }
-        catch(Exception e) when (e is FormatException || e is MunicipalityTaxRecordUpdateException)
-        {
-          return BadRequest(e.Message);
-        }
-      }
-      return Ok();
-    }
-
-    [Route("AddTaxRate")]
-    [HttpPost]
-    public ActionResult AddTaxRate([FromBody]MunicipalityTaxRecord MunicipalityTaxRecord)
+    public ActionResult AddMTax([FromBody]MunicipalityTaxRecord MunicipalityTaxRecord)
     {
       if (!ModelState.IsValid)
-        return BadRequest("The posted model is invalid");
+        return BadRequest("The model is invalid");
         
       try
         {
@@ -54,12 +34,12 @@ namespace MunicipalityTaxService.Controllers
       return Ok();
     }
 
-    [Route("UpdateTaxRate")]
+    [Route("UpdateMTax")]
     [HttpPut]
-    public ActionResult UpdateTaxRate([FromBody]MunicipalityTaxRecord MunicipalityTaxRecord)
+    public ActionResult UpdateMTax([FromBody]MunicipalityTaxRecord MunicipalityTaxRecord)
     {
       if (!ModelState.IsValid)
-        return BadRequest("The posted model is invalid");      
+        return BadRequest("The model is invalid");      
       try
       {
         MunicipalityTaxRecordRepository.UpdateMunicipalityTaxRecord(MunicipalityTaxRecord);

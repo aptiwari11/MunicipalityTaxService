@@ -21,7 +21,7 @@ namespace MunicipalityTaxService.Repositories
     {
       
         var TaxRateOnDate = dbContext.MunicipalityTaxRecordes
-          .Where(mt => mt.MunicipalityName == MunicipalityName && mt.ScheduleStart <= date && mt.ScheduleEnd >= date)
+           .Where(mt => mt.MunicipalityName == MunicipalityName && mt.ScheduleStart <= date && mt.ScheduleEnd >= date)
           .OrderBy(mt => mt.Period)
           .FirstOrDefault();
 
@@ -37,7 +37,7 @@ namespace MunicipalityTaxService.Repositories
       }
       catch (DbUpdateException e)
       {
-        throw new MunicipalityTaxRecordUpdateException("Could not create MunicipalityTaxRecord  in database. ", e);
+        throw new MunicipalityTaxRecordUpdateException("Could not create MunicipalityTaxRecord in database. ", e);
       }
     }
 

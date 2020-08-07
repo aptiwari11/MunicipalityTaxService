@@ -26,9 +26,12 @@ namespace MunicipalityTaxService
     {
       services.AddControllers();
       services.AddTransient<IMunicipalityTaxRecordRepository, MunicipalityTaxRecordRepositoryEF>();
-      services.AddDbContext<MunicipalityTaxRecordContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MunicipalityTaxRecordContext")));
+            //services.AddDbContext<MunicipalityTaxRecordContext>(options =>
+            //options.UseSqlServer(Configuration.GetConnectionString("MunicipalityTaxRecordContext")));
+            services.AddDbContext<MunicipalityTaxRecordContext>(options =>
+                  options.UseInMemoryDatabase(databaseName: "MunicipalityTaxRecordContext"));
 
+      services.AddSwaggerGen();
       services.AddMvc()
         .AddJsonOptions(options =>
         {
@@ -44,15 +47,21 @@ namespace MunicipalityTaxService
       {
         app.UseDeveloperExceptionPage();
       }
-
+     var scopee = app.ApplicationServices.CreateScope();
      //var context = app.ApplicationServices.GetService<MunicipalityTaxRecordContext>();
-     //AddTestData(context);
+     MunicipalityTaxRecordContext context = scopee.ServiceProvider.GetRequiredService<MunicipalityTaxRecordContext>();
+     AddTestData(context);
 
      app.UseRouting();
 
      app.UseAuthorization();
+     app.UseSwagger();
+           app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
-     app.UseEndpoints(endpoints =>
+            app.UseEndpoints(endpoints =>
       {
         endpoints.MapControllers();
       });

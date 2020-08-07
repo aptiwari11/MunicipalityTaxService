@@ -1,5 +1,4 @@
-﻿using MunicipalityTaxService.Models;
-using System;
+﻿using System;
 
 namespace MunicipalityTaxService.Models
 {
